@@ -19,6 +19,10 @@ public class DemoService {
         XMLService xmlService = new XMLService();
         xmlService.saveToXML(productsData);
 
+
+        ProductsData productData2 = xmlService.readFromXML();
+
+
     }
 
 }
