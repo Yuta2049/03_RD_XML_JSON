@@ -9,8 +9,9 @@ public class Starter {
 
 
         ProductService productService = new ProductService();
-        List<Product> products = productService.generateProducts();
-        productService.saveToXML(products);
+        //List<Product> products = productService.generateProducts();
+        //productService.saveToXML(products);
+        productService.saveToXML();
 
     }
 }

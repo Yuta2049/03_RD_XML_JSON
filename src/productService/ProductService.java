@@ -23,34 +23,35 @@ import java.util.List;
 @XmlRootElement
 public class ProductService {
 
-    private List<Product> products;
+//    private List<Product> products;
+//
+//    public List<Product> generateProducts() {
+//
+//        Product product = new Product("Apple", "iPhone 7", LocalDate.of(2017, 11, 1), "black", 200.0, 3.0);
+//
+//        Product product2 = new Product("Apple", "iPhone 8", LocalDate.of(2018, 11, 1), "gold", 300.0, 4.0);
+//
+//        Product product3 = new Product("Apple", "iPhone 9", LocalDate.of(2019, 11, 1), "gray", 500.0, 5.0);
+//
+//
+//        List<Product> products = new ArrayList<>();
+//        products.add(product);
+//        products.add(product2);
+//        products.add(product3);
+//
+//        return products;
+//    }
+//
+//
+//    @XmlAnyElement
+//    public List<Product> getProducts() {
+//        //return products;
+//        return generateProducts();
+//    }
 
-    public List<Product> generateProducts() {
 
-        Product product = new Product("Apple", "iPhone 7", LocalDate.of(2017, 11, 1), "black", 200.0, 3.0);
-
-        Product product2 = new Product("Apple", "iPhone 8", LocalDate.of(2018, 11, 1), "gold", 300.0, 4.0);
-
-        Product product3 = new Product("Apple", "iPhone 9", LocalDate.of(2019, 11, 1), "gray", 500.0, 5.0);
-
-
-        List<Product> products = new ArrayList<>();
-        products.add(product);
-        products.add(product2);
-        products.add(product3);
-
-        return products;
-    }
-
-
-    @XmlAnyElement
-    public List<Product> getProducts() {
-        //return products;
-        return generateProducts();
-    }
-
-
-    public void saveToXML(List<Product> products) {
+    //public void saveToXML(List<Product> products) {
+    public void saveToXML() {
 
 
         try {
@@ -83,7 +84,8 @@ public class ProductService {
 //            xsw.close();
 
                 //JAXBContext jc = JAXBContext.newInstance(Product.class, Parameter.class);
-            JAXBContext jc = JAXBContext.newInstance(Product.class, Category.class);
+            //JAXBContext jc = JAXBContext.newInstance(Product.class, Subcategory.class);
+            JAXBContext jc = JAXBContext.newInstance(Product.class, Category.Subcategory.class, Category.class);
                 //JAXBContext jc = JAXBContext.newInstance(Method.class, Parameter.class,
                 //        Product.class);
                 ParameterAdapter adapter = new ParameterAdapter(jc);
@@ -107,8 +109,16 @@ public class ProductService {
             //ParameterAdapter value1 = new ParameterAdapter();
 
             Category category = new Category();
+
+            category.setCategoryname("CATEGORY 1");
+            category.setSubcategorieses(category.getSubcategories());
+
             //List<Product> valu1 = Category
-            category.getProducts();
+            //category.getProducts();
+
+            //Subcategory subcategory = new Subcategory();
+            //subcategory.getProducts();
+
 
 
             //JAXBElement jx = new JAXBElement(new QName("foo"), value1.getClass(), value1);
