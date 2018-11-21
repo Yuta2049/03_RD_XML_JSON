@@ -8,54 +8,30 @@ import java.util.List;
 
 @XmlType(name = "category")
 @XmlRootElement
-public class Category
+public class CategoryOld
 {
     @XmlElement(name = "categoryname")
-    public String categoryname;
-
-    //@XmlElement(name = "subcategorieses")
-    //@XmlElementWrapper(name="subcategoriesList", nillable = true)
-    public List<Subcategory> subcategorieses;
+    public String categoryName;
 
 
+    @XmlElement(name = "subcategory")
+    @XmlElementWrapper(name="subcategories", nillable = true)
+    public List<Subcategory> subcategories;
 
-    public Category() {
+
+
+    public CategoryOld() {
     }
 
-    /*@XmlElementWrapper(name="wild-animals", nillable = true)
-    public List<Product> getProducts() {
-
-        Product product = new Product("Apple", "iPhone 7", LocalDate.of(2017, 11, 1), "black", 200.0, 3.0);
-
-        Product product2 = new Product("Apple", "iPhone 8", LocalDate.of(2018, 11, 1), "gold", 300.0, 4.0);
-
-        Product product3 = new Product("Apple", "iPhone 9", LocalDate.of(2019, 11, 1), "gray", 500.0, 5.0);
-
-        List<Product> products = new ArrayList<>();
-        products.add(product);
-        products.add(product2);
-        products.add(product3);
-
-        return products;
-    }*/
-
-    /*public String getCategoryname() {
-        return categoryname;
-    }*/
-
-    /*public List<Subcategory> getSubcategorieses() {
-        return subcategorieses;
-    }*/
-
-    public void setCategoryname(String categoryname) {
-        this.categoryname = categoryname;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public void setSubcategorieses(List<Subcategory> subcategorieses) {
-        this.subcategorieses = subcategorieses;
+        this.subcategories = subcategorieses;
     }
 
-    //@XmlElementWrapper(name="subcategoriesList", nillable = true)
+
     public List<Subcategory> getSubcategories() {
 
         Subcategory subcategory = new Subcategory();
@@ -86,17 +62,13 @@ public class Category
 
     static class Subcategory {
 
-        @XmlElement(name = "subcategoryname")
         public String subcategoryName;
 
-        //@XmlAttribute(name = "product")
-        //public int weight;
-
-
-        //@XmlElement(name = "subcategoryname")
+        @XmlElement(name = "product")
+        @XmlElementWrapper(name="products", nillable = true)
         public List<Product> productList;
 
-        public String getName() {
+        public String getSubcategoryName() {
             return subcategoryName;
         }
 

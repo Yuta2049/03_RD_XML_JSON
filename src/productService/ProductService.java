@@ -85,7 +85,7 @@ public class ProductService {
 
                 //JAXBContext jc = JAXBContext.newInstance(Product.class, Parameter.class);
             //JAXBContext jc = JAXBContext.newInstance(Product.class, Subcategory.class);
-            JAXBContext jc = JAXBContext.newInstance(Product.class, Category.Subcategory.class, Category.class);
+            JAXBContext jc = JAXBContext.newInstance(Product.class, CategoryOld.Subcategory.class, CategoryOld.class);
                 //JAXBContext jc = JAXBContext.newInstance(Method.class, Parameter.class,
                 //        Product.class);
                 ParameterAdapter adapter = new ParameterAdapter(jc);
@@ -108,10 +108,20 @@ public class ProductService {
             //List<Product> value1 = productService.getProducts();
             //ParameterAdapter value1 = new ParameterAdapter();
 
-            Category category = new Category();
-
-            category.setCategoryname("CATEGORY 1");
+            CategoryOld category = new CategoryOld();
+            category.setCategoryName("CATEGORY 1");
             category.setSubcategorieses(category.getSubcategories());
+
+
+            /*Category category2 = new Category();
+            category2.setCategoryName("CATEGORY 2");
+            category2.setSubcategorieses(category2.getSubcategories());
+
+
+            List<Category> categories = new ArrayList<>();
+            categories.add(category);
+            categories.add(category2);*/
+
 
             //List<Product> valu1 = Category
             //category.getProducts();
@@ -125,6 +135,7 @@ public class ProductService {
 
                 //marshaller.marshal(action, System.out);
                 //marshaller.marshal(value1, System.out);
+            //marshaller.marshal(category, System.out);
             marshaller.marshal(category, System.out);
 
             }

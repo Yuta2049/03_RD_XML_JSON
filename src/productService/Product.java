@@ -40,11 +40,19 @@ public class Product {
         return color;
     }
 
+    public LocalDate getDateOfManufacture() {
+        return dateOfManufacture;
+    }
+
     public void setModel(String model) {
         this.model = model;
     }
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public void setDateOfManufacture(LocalDate dateOfManufacture) {
+        this.dateOfManufacture = dateOfManufacture;
     }
 }
