@@ -8,6 +8,7 @@ import java.util.List;
 
 //@XmlType(name = "category")
 @XmlRootElement
+//@XmlType(namespace="http://test.com")
 public class ProductsData {
 
     private List<Category> categoryList;

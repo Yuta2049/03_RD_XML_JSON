@@ -36,8 +36,8 @@ public class ProductService {
 
         Subcategory subcategory = new Subcategory();
         subcategory.setSubcategoryName("SUBCATEGORY 1");
-        Product product = new Product("Apple", "iPhone 7", LocalDate.of(2017, 11, 1), "black", 200.0, 3.0);
-        Product product2 = new Product("Apple", "iPhone 8", LocalDate.of(2018, 11, 1), "gold", 300.0, 4.0);
+        Product product = new Product("Apple", "AA123", LocalDate.of(2017, 11, 1), "black", 200.0, 3.0);
+        Product product2 = new Product("Apple", "BB345", LocalDate.of(2018, 11, 1), "gold", 300.0, 4.0);
         List<Product> products = new ArrayList<>();
         products.add(product);
         products.add(product2);
@@ -46,7 +46,7 @@ public class ProductService {
 
         Subcategory subcategory2 = new Subcategory();
         subcategory2.setSubcategoryName("SUBCATEGORY 2");
-        Product product3 = new Product("Apple", "iPhone 9", LocalDate.of(2019, 11, 1), "gray", 500.0, 5.0);
+        Product product3 = new Product("Apple", "CC789", LocalDate.of(2019, 11, 1), "gray", 500.0, 5.0);
         List<Product> products2 = new ArrayList<>();
         products2.add(product3);
         subcategory2.setProductList(products2);

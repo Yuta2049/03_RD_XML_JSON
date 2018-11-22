@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="productsData" type="productsDataType"/>
+  <xs:complexType name="productType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="color"/>
+      <xs:element type="xs:date" name="dateOfManufacture"/>
+      <xs:element name="model">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:pattern value="[a-z][0-9]"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element type="xs:float" name="price"/>
+      <xs:element type="xs:string" name="producer"/>
+      <xs:element type="xs:float" name="quantity"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="productsType">
+    <xs:sequence>
+      <xs:element type="productType" name="product" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="subcategoryType">
+    <xs:sequence>
+      <xs:element type="productsType" name="products"/>
+      <xs:element type="xs:string" name="subcategoryname"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="subcategoriesType">
+    <xs:sequence>
+      <xs:element type="subcategoryType" name="subcategory" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="categoryType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="categoryname"/>
+      <xs:element type="subcategoriesType" name="subcategories"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="categoriesType">
+    <xs:sequence>
+      <xs:element type="categoryType" name="category" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="productsDataType">
+    <xs:sequence>
+      <xs:element type="categoriesType" name="categories"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

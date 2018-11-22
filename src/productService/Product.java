@@ -2,9 +2,11 @@ package productService;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 
 //@XmlAccessorType(XmlAccessType.FIELD)
+//@XmlType(name = "product", namespace="http://test.com")
 @XmlType(name = "product")
 @XmlRootElement
 public class Product {
@@ -37,9 +39,22 @@ public class Product {
         return color;
     }
 
-//    public LocalDate getDateOfManufacture() {
-//        return dateOfManufacture;
-//    }
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    public LocalDate getDateOfManufacture() {
+        return dateOfManufacture;
+    }
+
+    public String getProducer() {
+        return producer;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public double getQuantity() {
+        return quantity;
+    }
 
     public void setModel(String model) {
         this.model = model;
@@ -51,5 +66,17 @@ public class Product {
 
     public void setDateOfManufacture(LocalDate dateOfManufacture) {
         this.dateOfManufacture = dateOfManufacture;
+    }
+
+    public void setProducer(String producer) {
+        this.producer = producer;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
     }
 }

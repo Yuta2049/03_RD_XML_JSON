@@ -1,11 +1,8 @@
 package demoService;
 
 import marshallingService.XMLService;
-import productService.Category;
 import productService.ProductService;
 import productService.ProductsData;
-
-import java.util.List;
 
 public class DemoService {
 
