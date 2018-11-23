@@ -6,8 +6,9 @@ import productService.ProductsData;
 
 import java.io.*;
 
-public class GSONService {
+public class GSONService implements IGSONService {
 
+    @Override
     public ProductsData readFromGSON() {
 
         ProductsData productsData = new ProductsData();
@@ -16,9 +17,7 @@ public class GSONService {
         try (FileInputStream fis = new FileInputStream(new File("ProductList.json"));
              ObjectInputStream ois = new ObjectInputStream(fis)) {
 
-
             String jsonString = ois.readObject().toString();
-
 
             JsonParser parser = new JsonParser();
             JsonElement jsonElement = parser.parse(jsonString);
@@ -27,7 +26,6 @@ public class GSONService {
 
             JsonElement categoryList = rootObject.get("categoryList");
 
-
             GsonBuilder builder = new GsonBuilder();
             Gson gson = builder.create();
             productsData = gson.fromJson(jsonString, ProductsData.class);
@@ -35,7 +33,6 @@ public class GSONService {
             System.out.println("==================================");
             System.out.println("ДЕСЕРИАЛИЗАЦИЯ ИЗ JSON ");
             System.out.println(productsData.toString());
-            //System.out.println("==================================");
 
 
         } catch (Exception e) {
@@ -47,6 +44,7 @@ public class GSONService {
 
     }
 
+    @Override
     public void writeToGSON(ProductsData productsData) {
 
         Gson gson = new GsonBuilder()

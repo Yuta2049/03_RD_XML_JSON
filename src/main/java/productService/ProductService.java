@@ -10,19 +10,16 @@ public class ProductService {
 
     public ProductsData generateData() {
 
-        List<Category> categoryList = new ArrayList<Category>();
+        List<Category> categoryList = new ArrayList<>();
 
         Category category = new Category();
         category.setCategoryName("CATEGORY 1");
         category.setSubcategoryList(getSubcategories());
 
-
         Category category2 = new Category();
         category2.setCategoryName("CATEGORY 2");
         category2.setSubcategoryList(getSubcategories());
 
-
-        //List<Category> categories = new ArrayList<>();
         categoryList.add(category);
         categoryList.add(category2);
 
@@ -43,7 +40,6 @@ public class ProductService {
         products.add(product2);
         subcategory.setProductList(products);
 
-
         Subcategory subcategory2 = new Subcategory();
         subcategory2.setSubcategoryName("SUBCATEGORY 2");
         Product product3 = new Product("Apple", "CC789", LocalDate.of(2019, 11, 1), "gray", 500.0, 5.0);
@@ -58,9 +54,5 @@ public class ProductService {
 
         return subcategoriesList;
 
-
     }
-
-
-
 }

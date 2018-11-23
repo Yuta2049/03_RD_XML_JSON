@@ -1,4 +1,4 @@
-package productService;
+package marshallingService;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.time.LocalDate;

@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 
-//@XmlType(name = "category", namespace="http://test.com")
 @XmlType(name = "category")
 @XmlRootElement
 public class Category {

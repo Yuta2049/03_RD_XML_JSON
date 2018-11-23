@@ -1,12 +1,12 @@
 package productService;
 
+import marshallingService.LocalDateAdapter;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 
-//@XmlAccessorType(XmlAccessType.FIELD)
-//@XmlType(name = "product", namespace="http://test.com")
 @XmlType(name = "product")
 @XmlRootElement
 public class Product {
