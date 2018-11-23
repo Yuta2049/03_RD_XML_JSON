@@ -1,0 +1,1 @@
+<?xml version="1.0" ?><S:Envelope><S:Body><ns0:findCustomerResponse><return><producer>Apple</producer><mode>iPhone 7</mode><dateOfManufacture></dateOfManufacture><color>black</color><price>200.0</price><quantity>3.0</quantity></return></ns0:findCustomerResponse></S:Body></S:Envelope>
