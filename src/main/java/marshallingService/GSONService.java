@@ -1,6 +1,7 @@
 package marshallingService;
 
 import com.google.gson.*;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import productService.ProductsData;
 
 import java.io.*;
@@ -31,7 +32,10 @@ public class GSONService {
             Gson gson = builder.create();
             productsData = gson.fromJson(jsonString, ProductsData.class);
 
+            System.out.println("==================================");
+            System.out.println("ДЕСЕРИАЛИЗАЦИЯ ИЗ JSON ");
             System.out.println(productsData.toString());
+            //System.out.println("==================================");
 
 
         } catch (Exception e) {

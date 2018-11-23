@@ -6,9 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 
-//@XmlType(name = "category")
 @XmlRootElement
-//@XmlType(namespace="http://test.com")
 public class ProductsData {
 
     private List<Category> categoryList;
@@ -28,9 +26,26 @@ public class ProductsData {
 
     @Override
     public String toString() {
-        return "ProductsData{" +
-                "categoryList=" + categoryList +
-                '}';
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Category currentCategory : categoryList) {
+            stringBuilder.append("Категория: ").append(currentCategory.getCategoryName()).append("\n");
+            for (Subcategory currentSubcategory : currentCategory.getSubcategoryList()) {
+                stringBuilder.append("   Подкатегория: ").append(currentSubcategory.getSubcategoryName()).append("\n");
+                for (Product currentProduct : currentSubcategory.getProductList()) {
+                    stringBuilder.append("      Продукт: ").append("\n");
+                    stringBuilder.append("         Модель           : ").append(currentProduct.getModel()).append("\n");
+                    stringBuilder.append("         Цвет             : ").append(currentProduct.getColor()).append("\n");
+                    stringBuilder.append("         Производитель    : ").append(currentProduct.getProducer()).append("\n");
+                    stringBuilder.append("         Дата изготовления: ").append(currentProduct.getDateOfManufacture()).append("\n");
+                    stringBuilder.append("         Цена             : ").append(currentProduct.getPrice()).append("\n");
+                    stringBuilder.append("         Количество:      : ").append(currentProduct.getQuantity()).append("\n");
+                }
+            }
+        }
+
+        return stringBuilder.toString();
     }
 }
 
