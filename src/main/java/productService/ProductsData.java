@@ -25,4 +25,13 @@ public class ProductsData {
     public void setCategoryList(List<Category> categoryList) {
         this.categoryList = categoryList;
     }
+
+    @Override
+    public String toString() {
+        return "ProductsData{" +
+                "categoryList=" + categoryList +
+                '}';
+    }
 }
+
+
