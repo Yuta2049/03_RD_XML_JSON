@@ -15,7 +15,7 @@ public class ProductsData {
     }
 
     @XmlElement(name = "category")
-    @XmlElementWrapper(name="categories", nillable = true)
+    @XmlElementWrapper(name = "categories", nillable = true)
     public List<Category> getCategoryList() {
         return categoryList;
     }

@@ -1,10 +1,11 @@
 package marshallingService;
 
 import com.google.gson.*;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import productService.ProductsData;
 
 import java.io.*;
+
+import static productService.Constants.jsonFileName;
 
 public class GSONService implements IGSONService {
 
@@ -13,27 +14,14 @@ public class GSONService implements IGSONService {
 
         ProductsData productsData = new ProductsData();
 
-
-        try (FileInputStream fis = new FileInputStream(new File("ProductList.json"));
+        try (FileInputStream fis = new FileInputStream(new File(jsonFileName));
              ObjectInputStream ois = new ObjectInputStream(fis)) {
 
             String jsonString = ois.readObject().toString();
 
-            JsonParser parser = new JsonParser();
-            JsonElement jsonElement = parser.parse(jsonString);
-
-            JsonObject rootObject = jsonElement.getAsJsonObject(); // чтение главного объекта
-
-            JsonElement categoryList = rootObject.get("categoryList");
-
             GsonBuilder builder = new GsonBuilder();
             Gson gson = builder.create();
             productsData = gson.fromJson(jsonString, ProductsData.class);
-
-            System.out.println("==================================");
-            System.out.println("ДЕСЕРИАЛИЗАЦИЯ ИЗ JSON ");
-            System.out.println(productsData.toString());
-
 
         } catch (Exception e) {
             System.out.println("ЧТО-ТО СЛУЧИЛОСЬ ПРИ ЧТЕНИИ ИЗ JSON");
@@ -53,7 +41,7 @@ public class GSONService implements IGSONService {
 
         String json = gson.toJson(productsData);
 
-        try (FileOutputStream fos = new FileOutputStream(new File("ProductList.json"));
+        try (FileOutputStream fos = new FileOutputStream(new File(jsonFileName));
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
 
             oos.writeObject(json);

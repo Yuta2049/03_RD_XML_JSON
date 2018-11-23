@@ -1,28 +1,27 @@
 package marshallingService;
 
 import productService.*;
-import sun.util.resources.cldr.to.CalendarData_to_TO;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamReader;
-import javax.xml.stream.events.StartElement;
-import javax.xml.stream.events.XMLEvent;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 
 import java.io.File;
-import java.io.InputStream;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
+
+import static productService.Constants.xmlFileName;
+import static productService.Constants.xsdFileName;
 
 public class XMLService implements IXMLService {
 
@@ -33,20 +32,41 @@ public class XMLService implements IXMLService {
 
             JAXBContext jc = JAXBContext.newInstance(Product.class, Subcategory.class, Category.class, ProductsData.class);
 
-            File xmlFile = new File("ProductData.xml");
+            File xmlFile = new File(xmlFileName);
 
             Marshaller marshaller = jc.createMarshaller();
 
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            //marshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, xsdFileName);
+            marshaller.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION, xsdFileName);
 
             marshaller.marshal(productsData, xmlFile);
-
 
         } catch (Exception e) {
             System.out.println("ОШИБКА ПРИ СОХРАНЕНИИ В XML!");
             e.printStackTrace();
         }
 
+    }
+
+    boolean getXMLFileIsValid() {
+
+        //try (StringReader stringReader = new StringReader(xmlFileName);){
+        try {
+
+            SchemaFactory factory = SchemaFactory
+                    .newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schema = factory.newSchema(new StreamSource(xsdFileName));
+
+            Validator validator = schema.newValidator();
+            validator.validate(new StreamSource(xmlFileName));
+
+        } catch (Exception e) {
+            System.out.println("Возникли ошибки при валидации xml");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
 
@@ -58,28 +78,31 @@ public class XMLService implements IXMLService {
 
         try {
 
-            File xmlFile = new File("ProductData.xml");
-            StreamSource inputStream = new StreamSource(xmlFile);
-
+            StreamSource inputStream = new StreamSource(new File(xmlFileName));
             XMLInputFactory factory = XMLInputFactory.newFactory();
             XMLStreamReader streamReader = factory.createXMLStreamReader(inputStream);
 
-            while (streamReader.hasNext()) {
+            if (getXMLFileIsValid()) {
 
-                int eventType = streamReader.next();
-                if(eventType == XMLStreamConstants.START_ELEMENT) {
+                while (streamReader.hasNext()) {
 
-                    if (streamReader.getLocalName().equals("category")) {
+                    int eventType = streamReader.next();
+                    if (eventType == XMLStreamConstants.START_ELEMENT) {
 
-                        JAXBContext jc = JAXBContext.newInstance(Category.class);
-                        Unmarshaller unmarshaller = jc.createUnmarshaller();
-                        JAXBElement<Category> jb = unmarshaller.unmarshal(streamReader, Category.class);
-                        //xsr.close();
+                        if (streamReader.getLocalName().equals("category")) {
 
-                        Category category = jb.getValue();
-                        categoryList.add(category);
+                            JAXBContext jc = JAXBContext.newInstance(Category.class);
+                            Unmarshaller unmarshaller = jc.createUnmarshaller();
+                            JAXBElement<Category> jb = unmarshaller.unmarshal(streamReader, Category.class);
+
+                            Category category = jb.getValue();
+                            categoryList.add(category);
+                        }
                     }
                 }
+
+                streamReader.close();
+
             }
 
         } catch (Exception e) {
@@ -88,10 +111,6 @@ public class XMLService implements IXMLService {
         }
 
         productsData.setCategoryList(categoryList);
-
-        System.out.println("==================================");
-        System.out.println("ДЕСЕРИАЛИЗАЦИЯ ИЗ XML ");
-        System.out.println(productsData.toString());
 
         return productsData;
 
