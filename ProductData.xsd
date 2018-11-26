@@ -3,8 +3,13 @@
   <xs:element name="productsData" type="productsDataType"/>
   <xs:complexType name="productType">
     <xs:sequence>
-      <xs:element type="xs:string" name="color"/>
-      <xs:element type="xs:date" name="dateOfManufacture"/>
+      <xs:element name="dateOfManufacture">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:pattern value="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
       <xs:element name="model">
         <xs:simpleType>
           <xs:restriction base="xs:string">
@@ -16,7 +21,8 @@
       <xs:element type="xs:string" name="producer"/>
       <xs:element type="xs:float" name="quantity"/>
     </xs:sequence>
-  </xs:complexType>
+    <xs:attribute type="xs:string" name="Color" use="optional"/>
+</xs:complexType>
   <xs:complexType name="productsType">
     <xs:sequence>
       <xs:element type="productType" name="product" maxOccurs="unbounded" minOccurs="0"/>

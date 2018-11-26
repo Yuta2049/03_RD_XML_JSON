@@ -6,17 +6,15 @@
             <subcategories>
                 <subcategory>
                     <products>
-                        <product>
-                            <color>black</color>
-                            <dateOfManufacture>2017-11-01</dateOfManufacture>
+                        <product Color="black">
+                            <dateOfManufacture>01-11-2017</dateOfManufacture>
                             <model>AA123</model>
                             <price>200.0</price>
                             <producer>Apple</producer>
                             <quantity>3.0</quantity>
                         </product>
-                        <product>
-                            <color>gold</color>
-                            <dateOfManufacture>2018-11-01</dateOfManufacture>
+                        <product Color="gold">
+                            <dateOfManufacture>01-11-2018</dateOfManufacture>
                             <model>BB345</model>
                             <price>300.0</price>
                             <producer>Apple</producer>
@@ -27,9 +25,8 @@
                 </subcategory>
                 <subcategory>
                     <products>
-                        <product>
-                            <color>gray</color>
-                            <dateOfManufacture>2019-11-01</dateOfManufacture>
+                        <product Color="gray">
+                            <dateOfManufacture>01-11-2019</dateOfManufacture>
                             <model>CC789</model>
                             <price>500.0</price>
                             <producer>Apple</producer>
@@ -45,17 +42,15 @@
             <subcategories>
                 <subcategory>
                     <products>
-                        <product>
-                            <color>black</color>
-                            <dateOfManufacture>2017-11-01</dateOfManufacture>
+                        <product Color="black">
+                            <dateOfManufacture>01-11-2017</dateOfManufacture>
                             <model>AA123</model>
                             <price>200.0</price>
                             <producer>Apple</producer>
                             <quantity>3.0</quantity>
                         </product>
-                        <product>
-                            <color>gold</color>
-                            <dateOfManufacture>2018-11-01</dateOfManufacture>
+                        <product Color="gold">
+                            <dateOfManufacture>01-11-2018</dateOfManufacture>
                             <model>BB345</model>
                             <price>300.0</price>
                             <producer>Apple</producer>
@@ -66,9 +61,8 @@
                 </subcategory>
                 <subcategory>
                     <products>
-                        <product>
-                            <color>gray</color>
-                            <dateOfManufacture>2019-11-01</dateOfManufacture>
+                        <product Color="gray">
+                            <dateOfManufacture>01-11-2019</dateOfManufacture>
                             <model>CC789</model>
                             <price>500.0</price>
                             <producer>Apple</producer>

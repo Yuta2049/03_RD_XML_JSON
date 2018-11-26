@@ -2,6 +2,7 @@ package productService;
 
 import marshallingService.LocalDateAdapter;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -35,6 +36,7 @@ public class Product {
         return model;
     }
 
+    @XmlAttribute(name="Color")
     public String getColor() {
         return color;
     }
